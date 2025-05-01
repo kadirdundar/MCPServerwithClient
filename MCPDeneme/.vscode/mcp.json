@@ -1,0 +1,13 @@
+{
+    "servers": {
+        "my-mcp-server-98c8a0e6": {
+            "type": "stdio",
+            "command": "dotnet",
+            "args": [
+                "run",
+                "--project",
+                "/Users/kadirdundar/Desktop/MCPDeneme/MCPDeneme/MCPDeneme.csproj"
+            ]
+        }
+    }
+}
