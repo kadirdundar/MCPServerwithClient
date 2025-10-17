@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>ModelContextProtocol</id>
+    <version>0.1.0-preview.4</version>
+    <authors>ModelContextProtocolOfficial</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>logo.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/modelcontextprotocol/csharp-sdk</projectUrl>
+    <description>.NET SDK for the Model Context Protocol (MCP)</description>
+    <copyright>© Anthropic and Contributors.</copyright>
+    <tags>ModelContextProtocol mcp ai llm</tags>
+    <repository type="git" url="https://github.com/modelcontextprotocol/csharp-sdk" commit="4c537ef86bd8bb10980962a8f0bac001453c5cd9" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="Microsoft.Extensions.AI" version="9.3.0-preview.1.25161.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.AI.Abstractions" version="9.3.0-preview.1.25161.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Hosting.Abstractions" version="9.0.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Abstractions" version="9.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.Net.ServerSentEvents" version="10.0.0-preview.2.25163.2" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.Bcl.Memory" version="9.0.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.AI" version="9.3.0-preview.1.25161.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.AI.Abstractions" version="9.3.0-preview.1.25161.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Hosting.Abstractions" version="9.0.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Abstractions" version="9.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.Net.ServerSentEvents" version="10.0.0-preview.2.25163.2" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Json" version="9.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.Threading.Channels" version="9.0.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

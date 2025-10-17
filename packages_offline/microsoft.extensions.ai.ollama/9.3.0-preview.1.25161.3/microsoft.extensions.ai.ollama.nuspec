@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.Extensions.AI.Ollama</id>
+    <version>9.3.0-preview.1.25161.3</version>
+    <authors>Microsoft</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>Icon.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://dot.net/</projectUrl>
+    <description>Implementation of generative AI abstractions for Ollama.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <serviceable>true</serviceable>
+    <repository type="git" url="https://github.com/dotnet/extensions" commit="f1f17e642a685df7e87b805be1efe4729ff725e4" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="Microsoft.Extensions.AI.Abstractions" version="9.3.0-preview.1.25161.3" exclude="Build,Analyzers" />
+        <dependency id="System.Net.Http.Json" version="8.0.1" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Json" version="8.0.5" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net8.0">
+        <dependency id="Microsoft.Extensions.AI.Abstractions" version="9.3.0-preview.1.25161.3" exclude="Build,Analyzers" />
+        <dependency id="System.Net.Http.Json" version="8.0.1" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Json" version="8.0.5" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net9.0">
+        <dependency id="Microsoft.Extensions.AI.Abstractions" version="9.3.0-preview.1.25161.3" exclude="Build,Analyzers" />
+        <dependency id="System.Net.Http.Json" version="9.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Json" version="9.0.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.Extensions.AI.Abstractions" version="9.3.0-preview.1.25161.3" exclude="Build,Analyzers" />
+        <dependency id="System.Net.Http.Json" version="8.0.1" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Json" version="8.0.5" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Net.Http" targetFramework=".NETFramework4.6.2" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

@@ -1,0 +1,880 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Extensions.AI.Ollama</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Shared.DiagnosticIds.DiagnosticIds">
+            <summary>
+             Various diagnostic IDs reported by this repo.
+            </summary>
+            <remarks>
+             When adding a new diagnostic ID, add a corresponding suppression to the root <c>Directory.Build.targets</c> file,
+             and add a documentation entry to <c>docs/list-of-diagnostics.md</c>.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.Shared.DiagnosticIds.DiagnosticIds.Experiments">
+            <summary>
+             Experiments supported by this repo.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Shared.Diagnostics.Throw">
+            <summary>
+            Defines static methods used to throw exceptions.
+            </summary>
+            <remarks>
+            The main purpose is to reduce code size, improve performance, and standardize exception
+            messages.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfNull``1(``0,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentNullException"/> if the specified argument is <see langword="null"/>.
+            </summary>
+            <typeparam name="T">Argument type to be checked for <see langword="null"/>.</typeparam>
+            <param name="argument">Object to be checked for <see langword="null"/>.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfNullOrMemberNull``2(``0,``1,System.String,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentNullException"/> if the specified argument is <see langword="null"/>,
+            or <see cref="T:System.ArgumentException" /> if the specified member is <see langword="null"/>.
+            </summary>
+            <typeparam name="TParameter">Argument type to be checked for <see langword="null"/>.</typeparam>
+            <typeparam name="TMember">Member type to be checked for <see langword="null"/>.</typeparam>
+            <param name="argument">Argument to be checked for <see langword="null"/>.</param>
+            <param name="member">Object member to be checked for <see langword="null"/>.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <param name="memberName">The name of the member.</param>
+            <returns>The original value of <paramref name="member"/>.</returns>
+            <example>
+            <code language="csharp">
+            Throws.IfNullOrMemberNull(myObject, myObject?.MyProperty)
+            </code>
+            </example>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfMemberNull``2(``0,``1,System.String,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentException" /> if the specified member is <see langword="null"/>.
+            </summary>
+            <typeparam name="TParameter">Argument type.</typeparam>
+            <typeparam name="TMember">Member type to be checked for <see langword="null"/>.</typeparam>
+            <param name="argument">Argument to which member belongs.</param>
+            <param name="member">Object member to be checked for <see langword="null"/>.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <param name="memberName">The name of the member.</param>
+            <returns>The original value of <paramref name="member"/>.</returns>
+            <example>
+            <code language="csharp">
+            Throws.IfMemberNull(myObject, myObject.MyProperty)
+            </code>
+            </example>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfNullOrWhitespace(System.String,System.String)">
+            <summary>
+            Throws either an <see cref="T:System.ArgumentNullException"/> or an <see cref="T:System.ArgumentException"/>
+            if the specified string is <see langword="null"/> or whitespace respectively.
+            </summary>
+            <param name="argument">String to be checked for <see langword="null"/> or whitespace.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfNullOrEmpty(System.String,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentNullException"/> if the string is <see langword="null"/>,
+            or <see cref="T:System.ArgumentException"/> if it is empty.
+            </summary>
+            <param name="argument">String to be checked for <see langword="null"/> or empty.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfBufferTooSmall(System.Int32,System.Int32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentException"/> if the argument's buffer size is less than the required buffer size.
+            </summary>
+            <param name="bufferSize">The actual buffer size.</param>
+            <param name="requiredSize">The required buffer size.</param>
+            <param name="paramName">The name of the parameter to be checked.</param>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfOutOfRange``1(``0,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the enum value is not valid.
+            </summary>
+            <param name="argument">The argument to evaluate.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <typeparam name="T">The type of the enumeration.</typeparam>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentNullException"/> if the collection is <see langword="null"/>,
+            or <see cref="T:System.ArgumentException"/> if it is empty.
+            </summary>
+            <param name="argument">The collection to evaluate.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <typeparam name="T">The type of objects in the collection.</typeparam>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.ArgumentNullException(System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentNullException"/>.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.ArgumentNullException(System.String,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentNullException"/>.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.ArgumentOutOfRangeException(System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/>.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.ArgumentOutOfRangeException(System.String,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/>.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.ArgumentOutOfRangeException(System.String,System.Object,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/>.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+            <param name="actualValue">The value of the argument that caused this exception.</param>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.ArgumentException(System.String,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentException"/>.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.ArgumentException(System.String,System.String,System.Exception)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentException"/>.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+            <param name="message">A message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+            <remarks>
+            If the <paramref name="innerException"/> is not a <see langword="null"/>, the current exception is raised in a catch
+            block that handles the inner exception.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.InvalidOperationException(System.String)">
+            <summary>
+            Throws an <see cref="T:System.InvalidOperationException"/>.
+            </summary>
+            <param name="message">A message that describes the error.</param>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.InvalidOperationException(System.String,System.Exception)">
+            <summary>
+            Throws an <see cref="T:System.InvalidOperationException"/>.
+            </summary>
+            <param name="message">A message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfLessThan(System.Int32,System.Int32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/>  if the specified number is less than min.
+            </summary>
+            <param name="argument">Number to be expected being less than min.</param>
+            <param name="min">The number that must be less than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfGreaterThan(System.Int32,System.Int32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is greater than max.
+            </summary>
+            <param name="argument">Number to be expected being greater than max.</param>
+            <param name="max">The number that must be greater than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfLessThanOrEqual(System.Int32,System.Int32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is less or equal than min.
+            </summary>
+            <param name="argument">Number to be expected being less or equal than min.</param>
+            <param name="min">The number that must be less or equal than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfGreaterThanOrEqual(System.Int32,System.Int32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is greater or equal than max.
+            </summary>
+            <param name="argument">Number to be expected being greater or equal than max.</param>
+            <param name="max">The number that must be greater or equal than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfOutOfRange(System.Int32,System.Int32,System.Int32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is not in the specified range.
+            </summary>
+            <param name="argument">Number to be expected being greater or equal than max.</param>
+            <param name="min">The lower bound of the allowed range of argument values.</param>
+            <param name="max">The upper bound of the allowed range of argument values.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfZero(System.Int32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is equal to 0.
+            </summary>
+            <param name="argument">Number to be expected being not equal to zero.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfLessThan(System.UInt32,System.UInt32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/>  if the specified number is less than min.
+            </summary>
+            <param name="argument">Number to be expected being less than min.</param>
+            <param name="min">The number that must be less than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfGreaterThan(System.UInt32,System.UInt32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is greater than max.
+            </summary>
+            <param name="argument">Number to be expected being greater than max.</param>
+            <param name="max">The number that must be greater than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfLessThanOrEqual(System.UInt32,System.UInt32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is less or equal than min.
+            </summary>
+            <param name="argument">Number to be expected being less or equal than min.</param>
+            <param name="min">The number that must be less or equal than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfGreaterThanOrEqual(System.UInt32,System.UInt32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is greater or equal than max.
+            </summary>
+            <param name="argument">Number to be expected being greater or equal than max.</param>
+            <param name="max">The number that must be greater or equal than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfOutOfRange(System.UInt32,System.UInt32,System.UInt32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is not in the specified range.
+            </summary>
+            <param name="argument">Number to be expected being greater or equal than max.</param>
+            <param name="min">The lower bound of the allowed range of argument values.</param>
+            <param name="max">The upper bound of the allowed range of argument values.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfZero(System.UInt32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is equal to 0.
+            </summary>
+            <param name="argument">Number to be expected being not equal to zero.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfLessThan(System.Int64,System.Int64,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/>  if the specified number is less than min.
+            </summary>
+            <param name="argument">Number to be expected being less than min.</param>
+            <param name="min">The number that must be less than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfGreaterThan(System.Int64,System.Int64,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is greater than max.
+            </summary>
+            <param name="argument">Number to be expected being greater than max.</param>
+            <param name="max">The number that must be greater than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfLessThanOrEqual(System.Int64,System.Int64,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is less or equal than min.
+            </summary>
+            <param name="argument">Number to be expected being less or equal than min.</param>
+            <param name="min">The number that must be less or equal than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfGreaterThanOrEqual(System.Int64,System.Int64,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is greater or equal than max.
+            </summary>
+            <param name="argument">Number to be expected being greater or equal than max.</param>
+            <param name="max">The number that must be greater or equal than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfOutOfRange(System.Int64,System.Int64,System.Int64,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is not in the specified range.
+            </summary>
+            <param name="argument">Number to be expected being greater or equal than max.</param>
+            <param name="min">The lower bound of the allowed range of argument values.</param>
+            <param name="max">The upper bound of the allowed range of argument values.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfZero(System.Int64,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is equal to 0.
+            </summary>
+            <param name="argument">Number to be expected being not equal to zero.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfLessThan(System.UInt64,System.UInt64,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/>  if the specified number is less than min.
+            </summary>
+            <param name="argument">Number to be expected being less than min.</param>
+            <param name="min">The number that must be less than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfGreaterThan(System.UInt64,System.UInt64,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is greater than max.
+            </summary>
+            <param name="argument">Number to be expected being greater than max.</param>
+            <param name="max">The number that must be greater than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfLessThanOrEqual(System.UInt64,System.UInt64,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is less or equal than min.
+            </summary>
+            <param name="argument">Number to be expected being less or equal than min.</param>
+            <param name="min">The number that must be less or equal than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfGreaterThanOrEqual(System.UInt64,System.UInt64,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is greater or equal than max.
+            </summary>
+            <param name="argument">Number to be expected being greater or equal than max.</param>
+            <param name="max">The number that must be greater or equal than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfOutOfRange(System.UInt64,System.UInt64,System.UInt64,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is not in the specified range.
+            </summary>
+            <param name="argument">Number to be expected being greater or equal than max.</param>
+            <param name="min">The lower bound of the allowed range of argument values.</param>
+            <param name="max">The upper bound of the allowed range of argument values.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfZero(System.UInt64,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is equal to 0.
+            </summary>
+            <param name="argument">Number to be expected being not equal to zero.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfLessThan(System.Double,System.Double,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is less than min.
+            </summary>
+            <param name="argument">Number to be expected being less than min.</param>
+            <param name="min">The number that must be less than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfGreaterThan(System.Double,System.Double,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is greater than max.
+            </summary>
+            <param name="argument">Number to be expected being greater than max.</param>
+            <param name="max">The number that must be greater than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfLessThanOrEqual(System.Double,System.Double,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is less or equal than min.
+            </summary>
+            <param name="argument">Number to be expected being less or equal than min.</param>
+            <param name="min">The number that must be less or equal than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfGreaterThanOrEqual(System.Double,System.Double,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is greater or equal than max.
+            </summary>
+            <param name="argument">Number to be expected being greater or equal than max.</param>
+            <param name="max">The number that must be greater or equal than the argument.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfOutOfRange(System.Double,System.Double,System.Double,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is not in the specified range.
+            </summary>
+            <param name="argument">Number to be expected being greater or equal than max.</param>
+            <param name="min">The lower bound of the allowed range of argument values.</param>
+            <param name="max">The upper bound of the allowed range of argument values.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Diagnostics.Throw.IfZero(System.Double,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if the specified number is equal to 0.
+            </summary>
+            <param name="argument">Number to be expected being not equal to zero.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of <paramref name="argument"/>.</returns>
+        </member>
+        <member name="T:Microsoft.Shared.Collections.Empty">
+            <summary>
+            Defines static methods used to optimize the use of empty collections.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Shared.Collections.Empty.ReadOnlyCollection``1">
+            <summary>
+            Returns an optimized empty collection.
+            </summary>
+            <typeparam name="T">The type of the collection.</typeparam>
+            <returns>Returns an efficient static instance of an empty collection.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Collections.Empty.Enumerable``1">
+            <summary>
+            Returns an optimized empty collection.
+            </summary>
+            <typeparam name="T">The type of the collection.</typeparam>
+            <returns>Returns an efficient static instance of an empty collection.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Collections.Empty.ReadOnlyList``1">
+            <summary>
+            Returns an optimized empty collection.
+            </summary>
+            <typeparam name="T">The type of the collection.</typeparam>
+            <returns>Returns an efficient static instance of an empty list.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Collections.Empty.ReadOnlyDictionary``2">
+            <summary>
+            Returns an optimized empty dictionary.
+            </summary>
+            <typeparam name="TKey">The key type of the dictionary.</typeparam>
+            <typeparam name="TValue">The value type of the dictionary.</typeparam>
+            <returns>Returns an efficient static instance of an empty dictionary.</returns>
+        </member>
+        <member name="T:Microsoft.Shared.Collections.EmptyCollectionExtensions">
+            <summary>
+            Defines static methods used to optimize the use of empty collections.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Shared.Collections.EmptyCollectionExtensions.EmptyIfNull``1(System.Collections.Generic.IReadOnlyCollection{``0})">
+            <summary>
+            Returns an optimized empty collection if the input is <see langword="null"/> or empty, otherwise returns the input.
+            </summary>
+            <typeparam name="T">The type of the collection.</typeparam>
+            <param name="collection">The collection to check for <see langword="null"/> or empty.</param>
+            <returns>Returns a static instance of an empty type if the input collection is <see langword="null"/> or empty, otherwise the collection.</returns>
+            <remarks>
+            Substituting a static collection whenever an empty collection is needed helps in two ways. First,
+            it allows the original empty collection to be garbage collected, freeing memory. Second, the
+            empty collection that is returned is optimized to not allocated memory whenever the collection is
+            enumerated.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Shared.Collections.EmptyCollectionExtensions.EmptyIfNull``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            Returns an optimized empty collection if the input is <see langword="null"/> or empty, otherwise returns the input.
+            </summary>
+            <typeparam name="T">The type of the collection.</typeparam>
+            <param name="collection">The collection to check for <see langword="null"/> or empty.</param>
+            <returns>Returns a static instance of an empty type if the input collection is <see langword="null"/> or empty, otherwise the collection.</returns>
+            <remarks>
+            Substituting a static collection whenever an empty collection is needed helps in two ways. First,
+            it allows the original empty collection to be garbage collected, freeing memory. Second, the
+            empty collection that is returned is optimized to not allocated memory whenever the collection is
+            enumerated.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Shared.Collections.EmptyCollectionExtensions.EmptyIfNull``1(System.Collections.Generic.IReadOnlyList{``0})">
+            <summary>
+            Returns an optimized empty collection if the input is <see langword="null"/> or empty, otherwise returns the input.
+            </summary>
+            <typeparam name="T">The type of the collection.</typeparam>
+            <param name="list">The collection to check for <see langword="null"/> or empty.</param>
+            <returns>Returns a static instance of an empty type if the input collection is <see langword="null"/> or empty, otherwise the collection.</returns>
+            <remarks>
+            Substituting a static collection whenever an empty collection is needed helps in two ways. First,
+            it allows the original empty collection to be garbage collected, freeing memory. Second, the
+            empty collection that is returned is optimized to not allocated memory whenever the collection is
+            enumerated.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Shared.Collections.EmptyCollectionExtensions.EmptyIfNull``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Returns an optimized empty list if the input is <see langword="null"/> or empty, otherwise returns the input.
+            </summary>
+            <typeparam name="T">The type of the collection.</typeparam>
+            <param name="list">The list to check for <see langword="null"/> or empty.</param>
+            <returns>Returns a static instance of an empty type if the input collection is <see langword="null"/> or empty, otherwise the collection.</returns>
+            <remarks>
+            Substituting a static list whenever an empty collection is needed helps in two ways. First,
+            it allows the original empty collection to be garbage collected, freeing memory. Second, the
+            empty collection that is returned is optimized to not allocated memory whenever the collection is
+            enumerated.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Shared.Collections.EmptyCollectionExtensions.EmptyIfNull``1(``0[])">
+            <summary>
+            Returns an optimized empty array if the input is <see langword="null"/> or empty, otherwise returns the input.
+            </summary>
+            <typeparam name="T">The type of the array.</typeparam>
+            <param name="array">The array to check for <see langword="null"/> or empty.</param>
+            <returns>Returns a static instance of an empty array if the input array is <see langword="null"/> or empty, otherwise the array.</returns>
+        </member>
+        <member name="M:Microsoft.Shared.Collections.EmptyCollectionExtensions.EmptyIfNull``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns an optimized empty collection if the input is <see langword="null"/> or can be determined to be empty, otherwise returns the input.
+            </summary>
+            <typeparam name="T">The type of the collection.</typeparam>
+            <param name="enumerable">The collection to check for <see langword="null"/> or empty.</param>
+            <returns>Returns a static instance of an empty type if the input collection is <see langword="null"/> or empty, otherwise the collection.</returns>
+            <remarks>
+            This method does not enumerate the collection.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Shared.Collections.EmptyCollectionExtensions.EmptyIfNull``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1})">
+            <summary>
+            Returns an optimized empty dictionary if the input is <see langword="null"/> or can be determined to be empty, otherwise returns the input.
+            </summary>
+            <typeparam name="TKey">The key type of the dictionary.</typeparam>
+            <typeparam name="TValue">The value type of the dictionary.</typeparam>
+            <param name="dictionary">The dictionary to check for <see langword="null"/> or empty.</param>
+            <returns>Returns a static instance of an empty type if the input dictionary is <see langword="null"/> or empty, otherwise the dictionary.</returns>
+            <remarks>
+            Note that this method does not enumerate the dictionary.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.Boolean">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.NullableBoolean">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.Single">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.NullableSingle">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.SingleArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.SingleArrayArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaChatRequest">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaChatRequestMessage">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaChatRequestMessageArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaChatResponse">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaChatResponseMessage">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaEmbeddingRequest">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaEmbeddingResponse">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaFunctionCallContent">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaFunctionResultContent">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaFunctionTool">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaFunctionToolCall">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaFunctionToolParameter">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaFunctionToolParameters">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaRequestOptions">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaTool">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaToolCall">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.OllamaToolCallArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.IDictionaryStringJsonElement">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.IDictionaryStringObject">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.IEnumerableOllamaTool">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.IEnumerableString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.IListString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.JsonElement">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.NullableJsonElement">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.NullableInt32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.Int64">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.NullableInt64">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.Object">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.StringArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.JsonContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.AI.JsonContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Extensions.AI.JsonContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Extensions.AI.JsonContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Extensions.AI.OllamaChatClient">
+            <summary>Represents an <see cref="T:Microsoft.Extensions.AI.IChatClient"/> for Ollama.</summary>
+        </member>
+        <member name="F:Microsoft.Extensions.AI.OllamaChatClient._metadata">
+            <summary>Metadata about the client.</summary>
+        </member>
+        <member name="F:Microsoft.Extensions.AI.OllamaChatClient._apiChatEndpoint">
+            <summary>The api/chat endpoint URI.</summary>
+        </member>
+        <member name="F:Microsoft.Extensions.AI.OllamaChatClient._httpClient">
+            <summary>The <see cref="T:System.Net.Http.HttpClient"/> to use for sending requests.</summary>
+        </member>
+        <member name="F:Microsoft.Extensions.AI.OllamaChatClient._toolCallJsonSerializerOptions">
+            <summary>The <see cref="T:System.Text.Json.JsonSerializerOptions"/> use for any serialization activities related to tool call arguments and results.</summary>
+        </member>
+        <member name="M:Microsoft.Extensions.AI.OllamaChatClient.#ctor(System.String,System.String,System.Net.Http.HttpClient)">
+            <summary>Initializes a new instance of the <see cref="T:Microsoft.Extensions.AI.OllamaChatClient"/> class.</summary>
+            <param name="endpoint">The endpoint URI where Ollama is hosted.</param>
+            <param name="modelId">
+            The ID of the model to use. This ID can also be overridden per request via <see cref="P:Microsoft.Extensions.AI.ChatOptions.ModelId"/>.
+            Either this parameter or <see cref="P:Microsoft.Extensions.AI.ChatOptions.ModelId"/> must provide a valid model ID.
+            </param>
+            <param name="httpClient">An <see cref="T:System.Net.Http.HttpClient"/> instance to use for HTTP operations.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.AI.OllamaChatClient.#ctor(System.Uri,System.String,System.Net.Http.HttpClient)">
+            <summary>Initializes a new instance of the <see cref="T:Microsoft.Extensions.AI.OllamaChatClient"/> class.</summary>
+            <param name="endpoint">The endpoint URI where Ollama is hosted.</param>
+            <param name="modelId">
+            The ID of the model to use. This ID can also be overridden per request via <see cref="P:Microsoft.Extensions.AI.ChatOptions.ModelId"/>.
+            Either this parameter or <see cref="P:Microsoft.Extensions.AI.ChatOptions.ModelId"/> must provide a valid model ID.
+            </param>
+            <param name="httpClient">An <see cref="T:System.Net.Http.HttpClient"/> instance to use for HTTP operations.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="endpoint"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="modelId"/> is empty or composed entirely of whitespace.</exception>
+        </member>
+        <member name="P:Microsoft.Extensions.AI.OllamaChatClient.ToolCallJsonSerializerOptions">
+            <summary>Gets or sets <see cref="T:System.Text.Json.JsonSerializerOptions"/> to use for any serialization activities related to tool call arguments and results.</summary>
+        </member>
+        <member name="M:Microsoft.Extensions.AI.OllamaChatClient.GetResponseAsync(System.Collections.Generic.IEnumerable{Microsoft.Extensions.AI.ChatMessage},Microsoft.Extensions.AI.ChatOptions,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.AI.OllamaChatClient.GetStreamingResponseAsync(System.Collections.Generic.IEnumerable{Microsoft.Extensions.AI.ChatMessage},Microsoft.Extensions.AI.ChatOptions,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.AI.OllamaChatClient.Microsoft#Extensions#AI#IChatClient#GetService(System.Type,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.AI.OllamaChatClient.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.Extensions.AI.OllamaEmbeddingGenerator">
+            <summary>Represents an <see cref="T:Microsoft.Extensions.AI.IEmbeddingGenerator`2"/> for Ollama.</summary>
+        </member>
+        <member name="F:Microsoft.Extensions.AI.OllamaEmbeddingGenerator._metadata">
+            <summary>Metadata about the embedding generator.</summary>
+        </member>
+        <member name="F:Microsoft.Extensions.AI.OllamaEmbeddingGenerator._apiEmbeddingsEndpoint">
+            <summary>The api/embeddings endpoint URI.</summary>
+        </member>
+        <member name="F:Microsoft.Extensions.AI.OllamaEmbeddingGenerator._httpClient">
+            <summary>The <see cref="T:System.Net.Http.HttpClient"/> to use for sending requests.</summary>
+        </member>
+        <member name="M:Microsoft.Extensions.AI.OllamaEmbeddingGenerator.#ctor(System.String,System.String,System.Net.Http.HttpClient)">
+            <summary>Initializes a new instance of the <see cref="T:Microsoft.Extensions.AI.OllamaEmbeddingGenerator"/> class.</summary>
+            <param name="endpoint">The endpoint URI where Ollama is hosted.</param>
+            <param name="modelId">
+            The ID of the model to use. This ID can also be overridden per request via <see cref="P:Microsoft.Extensions.AI.ChatOptions.ModelId"/>.
+            Either this parameter or <see cref="P:Microsoft.Extensions.AI.ChatOptions.ModelId"/> must provide a valid model ID.
+            </param>
+            <param name="httpClient">An <see cref="T:System.Net.Http.HttpClient"/> instance to use for HTTP operations.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.AI.OllamaEmbeddingGenerator.#ctor(System.Uri,System.String,System.Net.Http.HttpClient)">
+            <summary>Initializes a new instance of the <see cref="T:Microsoft.Extensions.AI.OllamaEmbeddingGenerator"/> class.</summary>
+            <param name="endpoint">The endpoint URI where Ollama is hosted.</param>
+            <param name="modelId">
+            The ID of the model to use. This ID can also be overridden per request via <see cref="P:Microsoft.Extensions.AI.ChatOptions.ModelId"/>.
+            Either this parameter or <see cref="P:Microsoft.Extensions.AI.ChatOptions.ModelId"/> must provide a valid model ID.
+            </param>
+            <param name="httpClient">An <see cref="T:System.Net.Http.HttpClient"/> instance to use for HTTP operations.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="endpoint"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="modelId"/> is empty or composed entirely of whitespace.</exception>
+        </member>
+        <member name="M:Microsoft.Extensions.AI.OllamaEmbeddingGenerator.Microsoft#Extensions#AI#IEmbeddingGenerator#GetService(System.Type,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.AI.OllamaEmbeddingGenerator.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.AI.OllamaEmbeddingGenerator.GenerateAsync(System.Collections.Generic.IEnumerable{System.String},Microsoft.Extensions.AI.EmbeddingGenerationOptions,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.Extensions.AI.OllamaUtilities.SharedClient">
+            <summary>Gets a singleton <see cref="T:System.Net.Http.HttpClient"/> used when no other instance is supplied.</summary>
+        </member>
+    </members>
+</doc>

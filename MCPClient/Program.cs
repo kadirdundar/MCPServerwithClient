@@ -37,7 +37,7 @@ await using var mcpClient =
 // Configure Ollama LLM Client
 var ollamaChatClient = new OllamaChatClient(
     new Uri("http://localhost:11434/"),
-    "llama3.2:3b"
+    "qwen3:4b"
 );
 
 var chatClient = new ChatClientBuilder(ollamaChatClient)

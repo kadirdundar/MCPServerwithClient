@@ -1293,7 +1293,7 @@
     ]
   },
   "packageFolders": {
-    "/Users/kadirdundar/.nuget/packages/": {}
+    "/Users/kadirdundar/Desktop/MCPDeneme/packages_offline": {}
   },
   "project": {
     "version": "1.0.0",
@@ -1301,7 +1301,7 @@
       "projectUniqueName": "/Users/kadirdundar/Desktop/MCPDeneme/MCPClient/MCPClient.csproj",
       "projectName": "MCPClient",
       "projectPath": "/Users/kadirdundar/Desktop/MCPDeneme/MCPClient/MCPClient.csproj",
-      "packagesPath": "/Users/kadirdundar/.nuget/packages/",
+      "packagesPath": "/Users/kadirdundar/Desktop/MCPDeneme/packages_offline",
       "outputPath": "/Users/kadirdundar/Desktop/MCPDeneme/MCPClient/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [

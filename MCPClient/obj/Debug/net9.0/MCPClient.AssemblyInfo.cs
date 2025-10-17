@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MCPClient")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8fc76db2583890caf124cabd2097dab5ba454cc0")]
 [assembly: System.Reflection.AssemblyProductAttribute("MCPClient")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MCPClient")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

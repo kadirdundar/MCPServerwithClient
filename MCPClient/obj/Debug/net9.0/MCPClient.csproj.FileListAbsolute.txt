@@ -39,3 +39,4 @@
 /Users/kadirdundar/Desktop/MCPDeneme/MCPClient/obj/Debug/net9.0/MCPClient.pdb
 /Users/kadirdundar/Desktop/MCPDeneme/MCPClient/obj/Debug/net9.0/MCPClient.genruntimeconfig.cache
 /Users/kadirdundar/Desktop/MCPDeneme/MCPClient/obj/Debug/net9.0/ref/MCPClient.dll
+/Users/kadirdundar/Desktop/MCPDeneme/MCPClient/obj/Debug/net9.0/MCPClient.sourcelink.json
